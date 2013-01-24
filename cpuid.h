@@ -21,13 +21,13 @@
 #endif
 
 /** Small utility function used for diagnostics */
-void printBits(int64_t type, int pad) {
+void print_bits(int64_t type, int pad) {
  char bits[WORD_BUFFER];  
  char pos;
  memset(bits, '0', WORD_BUFFER);
  
  /* inner printing function */
- void innerPrint(int64_t l) { 
+ void inner_print(int64_t l) { 
   pos++;
   if(l < 2) { 
    bits[pad - pos] = l + 48;
@@ -39,7 +39,7 @@ void printBits(int64_t type, int pad) {
   }
  }
  
- innerPrint(type);
+ inner_print(type);
 
  bits[pad] = '\0';
  pos = 0;
@@ -89,7 +89,7 @@ void set_eflags(unsigned int flag) {
           : "edx"
         ); 
 
- printf("flags = "); printBits(eflags, 32);
+ printf("flags = "); print_bits(eflags, 32);
 
  __asm__ __volatile__ (
           __pop_edx__        //recovers dirty edx from stack
